@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shop | VELOUR</title>
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/pages/shop.css">
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="header__inner">
+      <div class="mobile-menu-btn" id="mobile-menu-btn">
+        <span></span><span></span><span></span>
+      </div>
+      <a href="index.html" class="header__logo">VELOUR</a>
+      <nav class="header__nav">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="shop.html" class="nav-link active">Shop All</a>
+        <a href="shop.html?category=men" class="nav-link">Men</a>
+        <a href="shop.html?category=women" class="nav-link">Women</a>
+
+      </nav>
+      <div class="header__actions">
+        <div id="header-auth" class="flex items-center gap-2"></div>
+        <button id="cart-btn" class="icon-btn relative" title="Cart">
+          <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg>
+          <span class="badge badge-count cart-badge" style="display:none;position:absolute;top:-5px;right:-5px;">0</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Nav -->
+  <nav id="mobile-nav" class="mobile-nav">
+    <button id="mobile-nav-close" class="icon-btn mobile-nav__close">
+      <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+    </button>
+    <a href="index.html" class="nav-link">Home</a>
+    <a href="shop.html" class="nav-link">Shop All</a>
+    <a href="shop.html?category=men" class="nav-link">Men</a>
+    <a href="shop.html?category=women" class="nav-link">Women</a>
+    <a href="shop.html?category=accessories" class="nav-link">Accessories</a>
+  </nav>
+
+  <!-- Cart Drawer -->
+  <div id="drawer-overlay" class="drawer-overlay"></div>
+  <div id="cart-drawer" class="cart-drawer">
+    <div class="cart-drawer__header">
+      <span class="cart-drawer__title">Your Cart</span>
+      <button id="cart-drawer-close" class="icon-btn">
+        <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+      </button>
+    </div>
+    <div id="cart-drawer-body" class="cart-drawer__body"></div>
+    <div id="cart-drawer-footer" class="cart-drawer__footer"></div>
+  </div>
+
+  <main class="main-content">
+    <div class="page-hero" style="padding-top:4rem;padding-bottom:3rem">
+      <div class="container text-center">
+        <h1 class="page-hero__title">The Collection</h1>
+        <p class="page-hero__sub mx-auto">Explore our full range of premium streetwear. Filter to find your perfect fit.</p>
+      </div>
+    </div>
+
+    <section class="section container" style="padding-top:2rem">
+      <div class="search-bar" style="max-width:400px;margin-bottom:2rem;margin-left:auto;margin-right:auto;">
+        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+        <input type="text" id="search-input" placeholder="Search products, categories...">
+      </div>
+
+      <div class="shop-layout">
+        <!-- Sidebar Filters -->
+        <aside class="sidebar" id="sidebar">
+          <button class="icon-btn sidebar-close hide-desktop" id="close-sidebar-btn">
+            <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+          </button>
+          
+          <div class="sidebar__section">
+            <div class="sidebar__title">Category</div>
+            <div class="filter-list">
+              <label class="filter-item"><input type="radio" name="cat" value="" checked> All</label>
+              <label class="filter-item"><input type="radio" name="cat" value="men"> Men</label>
+              <label class="filter-item"><input type="radio" name="cat" value="women"> Women</label>
+
+            </div>
+          </div>
+
+          <div class="sidebar__section">
+            <div class="sidebar__title">Size</div>
+            <div class="size-grid" id="filter-sizes">
+              <button class="size-btn filter-size" data-size="XS">XS</button>
+              <button class="size-btn filter-size" data-size="S">S</button>
+              <button class="size-btn filter-size" data-size="M">M</button>
+              <button class="size-btn filter-size" data-size="L">L</button>
+              <button class="size-btn filter-size" data-size="XL">XL</button>
+              <button class="size-btn filter-size" data-size="XXL">XXL</button>
+            </div>
+          </div>
+
+          <div class="sidebar__section">
+            <div class="sidebar__title">Features</div>
+            <div class="filter-list">
+              <label class="filter-item"><input type="checkbox" id="filter-sale"> On Sale</label>
+              <label class="filter-item"><input type="checkbox" id="filter-new"> New Arrivals</label>
+            </div>
+          </div>
+
+          <div class="filter-actions">
+            <button class="btn btn-primary btn-sm btn-full" id="apply-filters-btn">Apply</button>
+            <button class="btn btn-secondary btn-sm btn-full" id="reset-filters-btn">Reset</button>
+          </div>
+        </aside>
+
+        <!-- Main Content -->
+        <div>
+          <div class="top-bar">
+            <div>
+              <button class="btn btn-secondary btn-sm mobile-filter-btn" id="open-sidebar-btn">Filters</button>
+              <span id="product-count" class="text-secondary text-sm ml-2">Loading...</span>
+            </div>
+            <select id="sort-select" class="sort-dropdown">
+              <option value="featured">Featured</option>
+              <option value="newest">Newest</option>
+              <option value="price_asc">Price: Low to High</option>
+              <option value="price_desc">Price: High to Low</option>
+              <option value="rating">Top Rated</option>
+            </select>
+          </div>
+
+          <div id="products-grid" class="products-grid">
+            <!-- Skeletons -->
+            <div class="skeleton" style="aspect-ratio:3/4"></div>
+            <div class="skeleton" style="aspect-ratio:3/4"></div>
+            <div class="skeleton" style="aspect-ratio:3/4"></div>
+            <div class="skeleton" style="aspect-ratio:3/4"></div>
+          </div>
+
+          <div id="pagination" class="pagination"></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__grid">
+        <div>
+          <div class="footer__brand-logo">VELOUR</div>
+          <p class="footer__brand-desc">Premium streetwear essentials crafted for the modern individual.</p>
+        </div>
+        <div>
+          <div class="footer__heading">Shop</div>
+          <div class="footer__links">
+            <a href="shop.html" class="footer__link">All Products</a>
+            <a href="shop.html?category=men" class="footer__link">Men's</a>
+            <a href="shop.html?category=women" class="footer__link">Women's</a>
+            <a href="shop.html?category=accessories" class="footer__link">Accessories</a>
+          </div>
+        </div>
+        <div>
+          <div class="footer__heading">Company</div>
+          <div class="footer__links">
+            <a href="#" class="footer__link">Our Story</a>
+            <a href="#" class="footer__link">Careers</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <div class="footer__copy">&copy; 2024 VELOUR.</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- HTML Templates for UI Rendering -->
+  <template id="product-card-template">
+    <div class="product-card reveal">
+      <div class="product-card__image-wrap">
+        <img class="p-img" src="" alt="" loading="lazy">
+        <div class="product-card__badges p-badges"></div>
+        <div class="product-card__actions">
+          <button class="icon-btn wishlist-toggle p-wishlist" title="Wishlist">
+            <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+          </button>
+        </div>
+      </div>
+      <div class="product-card__body">
+        <div class="product-card__cat p-cat"></div>
+        <div class="product-card__name p-name"></div>
+        <div class="rating">
+          <div class="stars p-stars"></div>
+          <span class="rating-count p-reviews"></span>
+        </div>
+        <div class="product-card__pricing" style="margin-top:.5rem">
+          <span class="product-card__price p-price"></span>
+          <span class="product-card__original p-orig" style="display:none"></span>
+        </div>
+        <button class="product-card__add p-add">Quick Add</button>
+      </div>
+    </div>
+  </template>
+
+  <template id="cart-item-template">
+    <div class="cart-item">
+      <img class="cart-item__img ci-img" src="" alt="">
+      <div class="cart-item__body">
+        <div class="cart-item__name ci-name"></div>
+        <div class="cart-item__meta ci-meta"></div>
+        <div class="cart-item__footer">
+          <div class="qty-control">
+            <button class="qty-btn ci-qty-dec">−</button>
+            <span class="qty-value ci-qty-val"></span>
+            <button class="qty-btn ci-qty-inc">+</button>
+          </div>
+          <span class="cart-item__price ci-price"></span>
+        </div>
+      </div>
+      <button class="icon-btn btn-icon ci-remove" style="align-self:flex-start;flex-shrink:0">
+        <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+      </button>
+    </div>
+  </template>
+
+  <script src="js/api.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/ui.js"></script>
+  <script>
+    let state = {
+      category: null,
+      search: null,
+      size: null,
+      has_discount: null,
+      is_new: null,
+      sort: 'featured',
+      page: 1,
+      page_size: 12
+    };
+
+    let searchTimeout;
+
+    document.addEventListener('DOMContentLoaded', () => {
+      // Parse URL params
+      const urlParams = new URLSearchParams(window.location.search);
+      if (urlParams.has('category')) state.category = urlParams.get('category');
+      if (urlParams.has('is_new')) state.is_new = urlParams.get('is_new') === 'true';
+
+      // Set initial UI state
+      if (state.category) {
+        document.querySelector(`input[name="cat"][value="${state.category}"]`)?.setAttribute('checked', 'true');
+      }
+      if (state.is_new) {
+        document.getElementById('filter-new').checked = true;
+      }
+
+      // Size buttons
+      document.querySelectorAll('.filter-size').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          const wasActive = e.target.classList.contains('active');
+          document.querySelectorAll('.filter-size').forEach(b => b.classList.remove('active'));
+          if (!wasActive) e.target.classList.add('active');
+        });
+      });
+
+      // Search debounce
+      document.getElementById('search-input').addEventListener('input', (e) => {
+        clearTimeout(searchTimeout);
+        searchTimeout = setTimeout(() => {
+          state.search = e.target.value || null;
+          state.page = 1;
+          loadProducts();
+        }, 500);
+      });
+
+      // Bind UI events
+      document.getElementById('sort-select')?.addEventListener('change', applyFilters);
+      document.getElementById('apply-filters-btn')?.addEventListener('click', applyFilters);
+      document.getElementById('reset-filters-btn')?.addEventListener('click', resetFilters);
+      document.getElementById('open-sidebar-btn')?.addEventListener('click', () => document.getElementById('sidebar').classList.add('open'));
+      document.getElementById('close-sidebar-btn')?.addEventListener('click', () => document.getElementById('sidebar').classList.remove('open'));
+
+      loadProducts();
+    });
+
+    function applyFilters() {
+      const cat = document.querySelector('input[name="cat"]:checked').value;
+      const sizeBtn = document.querySelector('.filter-size.active');
+      
+      state.category = cat || null;
+      state.size = sizeBtn ? sizeBtn.dataset.size : null;
+      state.has_discount = document.getElementById('filter-sale').checked ? true : null;
+      state.is_new = document.getElementById('filter-new').checked ? true : null;
+      state.sort = document.getElementById('sort-select').value;
+      state.page = 1;
+      
+      if(window.innerWidth <= 900) {
+        document.getElementById('sidebar').classList.remove('open');
+      }
+
+      loadProducts();
+    }
+
+    function resetFilters() {
+      document.querySelector('input[name="cat"][value=""]').checked = true;
+      document.querySelectorAll('.filter-size').forEach(b => b.classList.remove('active'));
+      document.getElementById('filter-sale').checked = false;
+      document.getElementById('filter-new').checked = false;
+      document.getElementById('search-input').value = '';
+      state = { category: null, search: null, size: null, has_discount: null, is_new: null, sort: 'featured', page: 1, page_size: 12 };
+      document.getElementById('sort-select').value = 'featured';
+      applyFilters();
+    }
+
+    async function loadProducts() {
+      const grid = document.getElementById('products-grid');
+      grid.innerHTML = '<div class="skeleton" style="aspect-ratio:3/4"></div>'.repeat(4);
+      
+      try {
+        const res = await api.getProducts(state);
+        document.getElementById('product-count').textContent = `${res.total} Product${res.total !== 1 ? 's' : ''}`;
+        
+        if (res.products.length === 0) {
+          grid.innerHTML = `<div class="empty-state" style="grid-column:1/-1"><p class="empty-state__title">No products found</p><p class="empty-state__text">Try adjusting your filters</p><button class="btn btn-secondary" id="empty-reset-btn">Clear Filters</button></div>`;
+          document.getElementById('empty-reset-btn')?.addEventListener('click', resetFilters);
+        } else {
+          grid.innerHTML = '';
+          res.products.forEach(p => grid.appendChild(renderProductCard(p)));
+          initReveal(); // make cards fade in
+        }
+
+        renderPagination(res.page, res.total_pages);
+      } catch (e) {
+        Toast.error('Failed to load products');
+        grid.innerHTML = '';
+      }
+    }
+
+    function renderPagination(current, total) {
+      const pag = document.getElementById('pagination');
+      if (total <= 1) { pag.innerHTML = ''; return; }
+      
+      let html = '';
+      for (let i = 1; i <= total; i++) {
+        html += `<button class="page-btn ${i === current ? 'active' : ''}" onclick="goToPage(${i})">${i}</button>`;
+      }
+      pag.innerHTML = html;
+    }
+
+    function goToPage(p) {
+      state.page = p;
+      loadProducts();
+      window.scrollTo({top: 0, behavior: 'smooth'});
+    }
+  </script>
+</body>
+</html>

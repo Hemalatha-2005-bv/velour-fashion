@@ -1,0 +1,51 @@
+/* ═══════════════════════════════════════════════════════════════════
+   VELOUR — CART PAGE CSS
+═══════════════════════════════════════════════════════════════════ */
+.cart-page-layout {
+  display: grid;
+  grid-template-columns: 1fr 380px;
+  gap: 3rem;
+  margin-top: 2rem;
+}
+.cart-list { display: flex; flex-direction: column; gap: 1.5rem; }
+.cart-item-row {
+  display: flex;
+  gap: 1.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--border-subtle);
+}
+.cart-item-row img {
+  width: 110px;
+  height: 140px;
+  border-radius: var(--radius-md);
+  object-fit: cover;
+  background: var(--bg-elevated);
+}
+.cart-item-details { flex: 1; display: flex; flex-direction: column; }
+.cart-item-title { font-family: var(--font-display); font-size: 1.1rem; font-weight: 700; margin-bottom: 0.25rem; }
+.cart-item-meta { font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 1rem; }
+.cart-item-actions { display: flex; justify-content: space-between; align-items: center; margin-top: auto; }
+.cart-item-price { font-family: var(--font-display); font-weight: 700; font-size: 1.1rem; }
+
+.summary-box { position: sticky; top: 6rem; }
+.promo-box { display: flex; gap: 0.5rem; margin-bottom: 1.5rem; }
+.promo-box input { flex: 1; }
+
+.free-shipping-bar {
+  margin-bottom: 1.5rem;
+  padding: 1rem;
+  background: var(--bg-elevated);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-default);
+}
+.fs-text { font-size: 0.85rem; font-weight: 600; text-align: center; margin-bottom: 0.75rem; }
+.fs-track { height: 6px; background: var(--bg-secondary); border-radius: 3px; overflow: hidden; }
+.fs-fill { height: 100%; background: var(--accent-green); transition: width 0.5s ease; width: 0%; }
+
+.security-badges { display: flex; justify-content: center; gap: 1.5rem; margin-top: 1.5rem; color: var(--text-muted); font-size: 0.75rem; }
+.sec-badge { display: flex; align-items: center; gap: 0.4rem; }
+
+@media (max-width: 900px) {
+  .cart-page-layout { grid-template-columns: 1fr; }
+  .summary-box { position: static; }
+}

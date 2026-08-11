@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checkout | VELOUR</title>
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/components.css">
+  <style>
+    .checkout-layout { display: grid; grid-template-columns: 1.2fr 1fr; gap: 4rem; margin-top: 2rem; align-items: start; }
+    
+    .step-indicator { display: flex; justify-content: space-between; position: relative; margin-bottom: 3rem; }
+    .step-indicator::before { content: ''; position: absolute; top: 14px; left: 0; right: 0; height: 2px; background: var(--border-strong); z-index: 1; }
+    .step-dot { width: 30px; height: 30px; border-radius: 50%; background: var(--bg-card); border: 2px solid var(--border-strong); display: flex; align-items: center; justify-content: center; position: relative; z-index: 2; font-size: 0.8rem; font-weight: 700; color: var(--text-muted); transition: all 0.3s; }
+    .step-dot.active { border-color: var(--accent-amber); color: var(--accent-amber); background: var(--bg-elevated); }
+    .step-dot.completed { background: var(--accent-amber); border-color: var(--accent-amber); color: var(--bg-primary); }
+    .step-label { position: absolute; top: 38px; left: 50%; transform: translateX(-50%); font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); white-space: nowrap; }
+    .step-dot.active .step-label { color: var(--text-primary); }
+
+    .checkout-step { display: none; animation: fadeIn 0.4s ease; }
+    .checkout-step.active { display: block; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    
+    .pay-tabs { display: flex; gap: 1rem; margin-bottom: 1.5rem; }
+    .pay-tab { flex: 1; padding: 1rem; border: 1px solid var(--border-default); border-radius: var(--radius-md); text-align: center; font-weight: 600; cursor: pointer; transition: all 0.2s; }
+    .pay-tab.active { border-color: var(--accent-amber); background: rgba(245,158,11,0.05); color: var(--accent-amber); }
+
+    .summary-card { background: var(--bg-card); border-radius: var(--radius-xl); padding: 2rem; border: 1px solid var(--border-subtle); position: sticky; top: 2rem; }
+    .checkout-item { display: flex; gap: 1rem; margin-bottom: 1rem; }
+    .checkout-item img { width: 64px; height: 80px; border-radius: var(--radius-sm); object-fit: cover; background: var(--bg-elevated); }
+    .checkout-item-details { flex: 1; font-size: 0.85rem; }
+
+    @media (max-width: 900px) {
+      .checkout-layout { grid-template-columns: 1fr; }
+      .summary-card { order: -1; position: static; margin-bottom: 2rem; }
+      .form-row { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <header class="header" style="position:static;background:var(--bg-primary)"><div class="header__inner"><a href="index.html" class="header__logo">VELOUR</a></div></header>
+
+  <main class="main-content container" style="padding-top:2rem;padding-bottom:5rem">
+    <div class="checkout-layout">
+      <!-- Left: Form -->
+      <div>
+        <div class="step-indicator">
+          <div class="step-dot active" id="dot-1">1<span class="step-label">Shipping</span></div>
+          <div class="step-dot" id="dot-2">2<span class="step-label">Payment</span></div>
+        </div>
+
+        <form id="checkout-form">
+          <!-- Step 1 -->
+          <div id="step-1" class="checkout-step active">
+            <h2 style="font-family:var(--font-display);margin-bottom:1.5rem">Shipping Address</h2>
+            <div class="form-group"><label class="form-label">Full Name</label><input type="text" class="form-input" id="s-name" required></div>
+            <div class="form-row">
+              <div class="form-group"><label class="form-label">Email</label><input type="email" class="form-input" id="s-email" required></div>
+              <div class="form-group"><label class="form-label">Phone</label><input type="tel" class="form-input" id="s-phone" required></div>
+            </div>
+            <div class="form-group"><label class="form-label">Address Line 1</label><input type="text" class="form-input" id="s-add1" required></div>
+            <div class="form-group"><label class="form-label">Address Line 2 (Optional)</label><input type="text" class="form-input" id="s-add2"></div>
+            <div class="form-row">
+              <div class="form-group"><label class="form-label">City</label><input type="text" class="form-input" id="s-city" required></div>
+              <div class="form-group"><label class="form-label">State/Province</label><input type="text" class="form-input" id="s-state" required></div>
+            </div>
+            <div class="form-row">
+              <div class="form-group"><label class="form-label">ZIP/Postal Code</label><input type="text" class="form-input" id="s-zip" required></div>
+              <div class="form-group"><label class="form-label">Country</label>
+                <select class="form-select" id="s-country"><option value="US">United States</option><option value="CA">Canada</option><option value="GB">United Kingdom</option><option value="IN">India</option></select>
+              </div>
+            </div>
+            <button type="button" class="btn btn-primary btn-full" style="margin-top:1rem;padding:1rem" onclick="goToStep(2)">Continue to Payment</button>
+          </div>
+
+          <!-- Step 2 -->
+          <div id="step-2" class="checkout-step">
+            <h2 style="font-family:var(--font-display);margin-bottom:1.5rem">Payment Method</h2>
+            <div class="pay-tabs">
+              <div class="pay-tab active" id="tab-card" onclick="setPayMethod('card')">Credit Card</div>
+              <div class="pay-tab" id="tab-cod" onclick="setPayMethod('cod')">Cash on Delivery</div>
+            </div>
+            
+            <div id="card-form">
+              <div class="form-group"><label class="form-label">Card Number</label><input type="text" class="form-input" id="c-num" placeholder="0000 0000 0000 0000" maxlength="19" style="font-family:monospace;font-size:1.1rem;letter-spacing:2px"></div>
+              <div class="form-row">
+                <div class="form-group"><label class="form-label">Expiry Date</label><input type="text" class="form-input" id="c-exp" placeholder="MM/YY" maxlength="5"></div>
+                <div class="form-group"><label class="form-label">CVV</label><input type="password" class="form-input" id="c-cvv" placeholder="123" maxlength="4"></div>
+              </div>
+              <div class="form-group"><label class="form-label">Name on Card</label><input type="text" class="form-input" id="c-name"></div>
+            </div>
+            
+            <div id="cod-form" style="display:none;padding:2rem;text-align:center;background:var(--bg-elevated);border-radius:var(--radius-md);margin-bottom:1.5rem">
+              <svg width="32" height="32" fill="none" stroke="var(--accent-green)" viewBox="0 0 24 24" style="margin-bottom:1rem"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+              <p style="font-weight:600">Pay with cash upon delivery.</p>
+            </div>
+
+            <div style="display:flex;gap:1rem;margin-top:2rem">
+              <button type="button" class="btn btn-secondary" onclick="goToStep(1)">Back</button>
+              <button type="button" class="btn btn-primary" style="flex:1;font-size:1.1rem" id="place-btn" onclick="submitOrder()">Place Order</button>
+            </div>
+          </div>
+        </form>
+      </div>
+
+      <!-- Right: Summary -->
+      <div>
+        <div class="summary-card">
+          <h3 style="font-family:var(--font-display);margin-bottom:1.5rem;font-size:1.2rem">Order Summary</h3>
+          <div id="co-items" style="margin-bottom:1.5rem;border-bottom:1px solid var(--border-subtle);padding-bottom:1rem"></div>
+          
+          <div class="summary-row"><span>Subtotal</span><span id="co-sub">$0.00</span></div>
+          <div class="summary-row"><span>Shipping</span><span id="co-ship">$0.00</span></div>
+          <div class="summary-row discount" id="co-disc-row" style="display:none"><span>Discount</span><span id="co-disc"></span></div>
+          <div class="summary-row total"><span>Total</span><span id="co-total">$0.00</span></div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script src="js/api.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/ui.js"></script>
+  <script>
+    let cData = null;
+    let payMethod = 'card';
+    const PROMO_CODES = { 'VELOUR10': 10, 'WELCOME20': 20, 'SALE15': 15 };
+    const appliedPromo = sessionStorage.getItem('velour_promo');
+
+    document.addEventListener('DOMContentLoaded', async () => {
+      if (!Auth.isLoggedIn()) { window.location.href = 'auth.html?next=checkout.html'; return; }
+      const u = Auth.getUser();
+      if(u) { document.getElementById('s-name').value = u.name; document.getElementById('s-email').value = u.email; }
+      
+      try {
+        cData = await api.getCart();
+        if(!cData || cData.items.length === 0) { window.location.href = 'cart.html'; return; }
+        renderSummary();
+      } catch(e) { Toast.error('Failed to load cart'); }
+
+      // Card input formatters
+      document.getElementById('c-num').addEventListener('input', function(e) {
+        let v = e.target.value.replace(/\D/g, '');
+        v = v.replace(/(\d{4})/g, '$1 ').trim();
+        e.target.value = v;
+      });
+      document.getElementById('c-exp').addEventListener('input', function(e) {
+        let v = e.target.value.replace(/\D/g, '');
+        if(v.length >= 2) v = v.substring(0,2) + '/' + v.substring(2);
+        e.target.value = v;
+      });
+    });
+
+    function renderSummary() {
+      const itemsHtml = cData.items.map(i => `
+        <div class="checkout-item">
+          <img src="${i.image}">
+          <div class="checkout-item-details">
+            <div style="font-weight:600;margin-bottom:2px">${i.name}</div>
+            <div style="color:var(--text-muted)">${i.size} | ${i.color} | Qty: ${i.quantity}</div>
+            <div style="font-weight:700;margin-top:4px">$${i.subtotal.toFixed(2)}</div>
+          </div>
+        </div>
+      `).join('');
+      document.getElementById('co-items').innerHTML = itemsHtml;
+      
+      document.getElementById('co-sub').textContent = `$${cData.subtotal.toFixed(2)}`;
+      document.getElementById('co-ship').textContent = cData.shipping === 0 ? 'Free' : `$${cData.shipping.toFixed(2)}`;
+      
+      let discount = 0;
+      if(appliedPromo && PROMO_CODES[appliedPromo]) {
+        discount = cData.subtotal * (PROMO_CODES[appliedPromo]/100);
+        const dr = document.getElementById('co-disc-row');
+        dr.style.display = 'flex';
+        dr.innerHTML = `<span>Discount (${appliedPromo})</span><span>-$${discount.toFixed(2)}</span>`;
+      }
+      
+      const total = cData.subtotal + cData.shipping - discount;
+      document.getElementById('co-total').textContent = `$${total.toFixed(2)}`;
+    }
+
+    function goToStep(s) {
+      if(s === 2) {
+        // Validate step 1
+        const req = ['s-name','s-email','s-phone','s-add1','s-city','s-state','s-zip'];
+        for(let id of req) { if(!document.getElementById(id).value.trim()) { Toast.error('Please fill all required fields'); return; } }
+      }
+      document.querySelectorAll('.checkout-step').forEach(el=>el.classList.remove('active'));
+      document.getElementById(`step-${s}`).classList.add('active');
+      
+      document.getElementById('dot-1').className = s===2 ? 'step-dot completed' : 'step-dot active';
+      document.getElementById('dot-2').className = s===2 ? 'step-dot active' : 'step-dot';
+      window.scrollTo({top:0, behavior:'smooth'});
+    }
+
+    function setPayMethod(m) {
+      payMethod = m;
+      document.getElementById('tab-card').className = m==='card' ? 'pay-tab active' : 'pay-tab';
+      document.getElementById('tab-cod').className = m==='cod' ? 'pay-tab active' : 'pay-tab';
+      document.getElementById('card-form').style.display = m==='card' ? 'block' : 'none';
+      document.getElementById('cod-form').style.display = m==='cod' ? 'block' : 'none';
+    }
+
+    async function submitOrder() {
+      if(payMethod === 'card') {
+        if(!document.getElementById('c-num').value || !document.getElementById('c-exp').value || !document.getElementById('c-cvv').value) {
+          return Toast.error('Please fill in card details');
+        }
+      }
+      
+      const btn = document.getElementById('place-btn');
+      btn.textContent = 'Processing...'; btn.disabled = true;
+
+      const payload = {
+        shipping_address: {
+          full_name: document.getElementById('s-name').value,
+          email: document.getElementById('s-email').value,
+          phone: document.getElementById('s-phone').value,
+          address_line1: document.getElementById('s-add1').value,
+          address_line2: document.getElementById('s-add2').value,
+          city: document.getElementById('s-city').value,
+          state: document.getElementById('s-state').value,
+          zip_code: document.getElementById('s-zip').value,
+          country: document.getElementById('s-country').value
+        },
+        payment_info: {
+          method: payMethod,
+          card_last4: payMethod === 'card' ? document.getElementById('c-num').value.slice(-4) : null
+        },
+        promo_code: appliedPromo || null
+      };
+
+      try {
+        const res = await api.placeOrder(payload);
+        sessionStorage.removeItem('velour_promo');
+        // Hacky success screen injection (real app would have order-confirmation.html)
+        document.querySelector('.checkout-layout').innerHTML = `
+          <div style="grid-column:1/-1;text-align:center;padding:4rem 1rem">
+            <svg width="64" height="64" fill="none" stroke="var(--accent-green)" viewBox="0 0 24 24" style="margin:0 auto 1.5rem"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            <h1 style="font-family:var(--font-display);font-size:2.5rem;margin-bottom:1rem">Order Confirmed!</h1>
+            <p style="color:var(--text-secondary);font-size:1.1rem;margin-bottom:2rem">Thank you for your purchase. Your order number is <strong>${res.id}</strong>.</p>
+            <a href="index.html" class="btn btn-primary">Return to Home</a>
+          </div>`;
+      } catch(e) {
+        Toast.error(e.message);
+        btn.textContent = 'Place Order'; btn.disabled = false;
+      }
+    }
+  </script>
+</body>
+</html>

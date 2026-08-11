@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cart | VELOUR</title>
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/pages/cart.css">
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="header__inner">
+      <div class="mobile-menu-btn" id="mobile-menu-btn"><span></span><span></span><span></span></div>
+      <a href="index.html" class="header__logo">VELOUR</a>
+      <nav class="header__nav">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="shop.html" class="nav-link">Shop All</a>
+      </nav>
+      <div class="header__actions">
+        <div id="header-auth" class="flex items-center gap-2"></div>
+      </div>
+    </div>
+  </header>
+
+  <main class="main-content container" style="padding-bottom:5rem">
+    <div class="page-hero" style="padding-top:2rem;padding-bottom:1rem;background:transparent;border:none">
+      <h1 class="page-hero__title" style="font-size:2.5rem;margin:0">Your Cart</h1>
+    </div>
+
+    <!-- Empty State -->
+    <div id="cart-empty" style="display:none;margin-top:2rem" class="empty-state">
+      <div class="empty-state__icon"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg></div>
+      <p class="empty-state__title">Your cart is empty</p>
+      <a href="shop.html" class="btn btn-primary btn-sm" style="margin-top:1rem">Continue Shopping</a>
+    </div>
+
+    <!-- Content -->
+    <div id="cart-content">
+      <div class="skeleton" style="height:300px;margin-top:2rem"></div>
+    </div>
+    
+    <!-- Loaded Layout -->
+    <div id="cart-loaded" class="cart-page-layout" style="display:none">
+      <div class="cart-list">
+        <div id="cart-items-container"></div>
+        <div style="margin-top:1rem"><a href="shop.html" class="text-secondary hover:text-primary" style="font-size:0.9rem;font-weight:600">← Continue Shopping</a></div>
+      </div>
+      <div>
+        <div class="summary-box">
+          <div class="free-shipping-bar">
+            <div class="fs-text" id="fs-text"></div>
+            <div class="fs-track"><div class="fs-fill" id="fs-fill" style="width:0%"></div></div>
+          </div>
+          
+          <div class="promo-box">
+            <input type="text" id="promo-input" class="form-input" placeholder="Promo code">
+            <button class="btn btn-secondary" id="apply-promo-btn">Apply</button>
+          </div>
+
+          <h3 style="font-family:var(--font-display);margin-bottom:1rem">Order Summary</h3>
+          <div class="summary-row"><span>Subtotal</span><span id="sum-subtotal"></span></div>
+          <div class="summary-row"><span>Shipping</span><span id="sum-shipping"></span></div>
+          <div class="summary-row discount" id="sum-discount-row" style="display:none">
+            <span>Discount (<span id="sum-promo-name"></span>)</span><span id="sum-discount"></span>
+          </div>
+          <div class="summary-row total"><span>Total</span><span id="sum-total"></span></div>
+          
+          <a href="checkout.html" class="btn btn-primary btn-full" style="margin-top:1.5rem;font-size:1.1rem;padding:1.1rem">Proceed to Checkout</a>
+          
+          <div class="security-badges">
+            <div class="sec-badge"><svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg> SSL Secured</div>
+            <div class="sec-badge"><svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg> Secure Checkout</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer"><div class="container"><div class="footer__bottom"><div class="footer__copy">&copy; 2024 VELOUR.</div></div></div></footer>
+
+  <!-- HTML Templates for UI Rendering -->
+  <template id="cart-page-item-template">
+    <div class="cart-item-row">
+      <img class="cpi-img" src="" alt="">
+      <div class="cart-item-details">
+        <div class="cart-item-title cpi-name"></div>
+        <div class="cart-item-meta cpi-meta"></div>
+        <div class="cart-item-actions">
+          <div class="qty-control">
+            <button class="qty-btn cpi-dec">−</button>
+            <input class="qty-value cpi-qty" value="" readonly>
+            <button class="qty-btn cpi-inc">+</button>
+          </div>
+          <div style="display:flex;align-items:center;gap:1.5rem">
+            <span class="cart-item-price cpi-price"></span>
+            <button class="icon-btn btn-icon cpi-rem">
+              <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </template>
+
+  <script src="js/api.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/ui.js"></script>
+  <script>
+    let cData = null;
+    let appliedPromo = sessionStorage.getItem('velour_promo') || null;
+    const PROMO_CODES = { 'VELOUR10': 10, 'WELCOME20': 20, 'SALE15': 15 };
+
+    document.addEventListener('DOMContentLoaded', () => {
+      if (!Auth.isLoggedIn()) {
+        document.getElementById('cart-content').innerHTML = `
+          <div class="empty-state">
+            <p class="empty-state__title">Sign in to view your cart</p>
+            <a href="auth.html?next=cart.html" class="btn btn-primary" style="margin-top:1rem">Sign In</a>
+          </div>`;
+        return;
+      }
+      
+      document.getElementById('apply-promo-btn')?.addEventListener('click', applyPromo);
+      document.getElementById('promo-input').value = appliedPromo || '';
+
+      loadFullCart();
+    });
+
+    async function loadFullCart() {
+      try {
+        cData = await api.getCart();
+        renderFullCart();
+      } catch (e) {
+        Toast.error('Failed to load cart');
+      }
+    }
+
+    function renderFullCart() {
+      const container = document.getElementById('cart-content');
+      container.style.display = 'none';
+
+      if (!cData || cData.items.length === 0) {
+        document.getElementById('cart-loaded').style.display = 'none';
+        document.getElementById('cart-empty').style.display = 'flex';
+        return;
+      }
+
+      document.getElementById('cart-empty').style.display = 'none';
+      document.getElementById('cart-loaded').style.display = 'grid';
+
+      let discount = 0;
+      if (appliedPromo && PROMO_CODES[appliedPromo]) {
+        discount = cData.subtotal * (PROMO_CODES[appliedPromo] / 100);
+      }
+      const finalTotal = cData.subtotal + cData.shipping - discount;
+      
+      const pct = Math.min(100, (cData.subtotal / 100) * 100);
+      const fsText = pct >= 100 ? `<span class="text-green">You've unlocked free shipping!</span>` : `Add $${(100 - cData.subtotal).toFixed(2)} more for free shipping`;
+      
+      document.getElementById('fs-text').innerHTML = fsText;
+      document.getElementById('fs-fill').style.width = `${pct}%`;
+
+      document.getElementById('sum-subtotal').textContent = `$${cData.subtotal.toFixed(2)}`;
+      document.getElementById('sum-shipping').innerHTML = cData.shipping === 0 ? '<span class="text-green">Free</span>' : `$${cData.shipping.toFixed(2)}`;
+      
+      const discountRow = document.getElementById('sum-discount-row');
+      if (discount > 0) {
+        discountRow.style.display = 'flex';
+        document.getElementById('sum-promo-name').textContent = appliedPromo;
+        document.getElementById('sum-discount').textContent = `-$${discount.toFixed(2)}`;
+      } else {
+        discountRow.style.display = 'none';
+      }
+      document.getElementById('sum-total').textContent = `$${finalTotal.toFixed(2)}`;
+
+      const listContainer = document.getElementById('cart-items-container');
+      listContainer.innerHTML = '';
+      const template = document.getElementById('cart-page-item-template');
+      
+      cData.items.forEach(i => {
+        const clone = template.content.cloneNode(true);
+        const img = clone.querySelector('.cpi-img');
+        img.src = i.image;
+        img.alt = i.name;
+        img.onerror = function() { this.src = 'images/product_tshirt.png'; };
+        
+        clone.querySelector('.cpi-name').textContent = i.name;
+        clone.querySelector('.cpi-meta').textContent = `Size: ${i.size} | Color: ${i.color}`;
+        clone.querySelector('.cpi-price').textContent = `$${i.subtotal.toFixed(2)}`;
+        clone.querySelector('.cpi-qty').value = i.quantity;
+        
+        clone.querySelector('.cpi-dec').addEventListener('click', () => updateItem(i.item_id, i.quantity - 1));
+        clone.querySelector('.cpi-inc').addEventListener('click', () => updateItem(i.item_id, i.quantity + 1));
+        clone.querySelector('.cpi-rem').addEventListener('click', () => removeItem(i.item_id));
+        
+        listContainer.appendChild(clone);
+      });
+    }
+
+    async function updateItem(id, q) {
+      try { cData = await api.updateCartItem(id, q); renderFullCart(); refreshCart(); } catch(e) {}
+    }
+    async function removeItem(id) {
+      try { cData = await api.removeCartItem(id); renderFullCart(); refreshCart(); Toast.info('Item removed'); } catch(e) {}
+    }
+
+    function applyPromo() {
+      const code = document.getElementById('promo-input').value.toUpperCase().trim();
+      if (!code) { sessionStorage.removeItem('velour_promo'); appliedPromo = null; renderFullCart(); return; }
+      if (PROMO_CODES[code]) {
+        sessionStorage.setItem('velour_promo', code);
+        appliedPromo = code;
+        Toast.success('Promo code applied!');
+        renderFullCart();
+      } else {
+        Toast.error('Invalid promo code');
+      }
+    }
+  </script>
+</body>
+</html>

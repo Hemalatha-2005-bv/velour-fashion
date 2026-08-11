@@ -1,0 +1,603 @@
+[
+  {
+    "id": "prod-001",
+    "name": "Shadow Oversized Hoodie",
+    "brand": "VELOUR",
+    "category": "men",
+    "subcategory": "hoodies",
+    "price": 89.99,
+    "original_price": 119.99,
+    "discount_pct": 25,
+    "description": "Our signature heavyweight cotton hoodie, crafted for maximum comfort and minimal aesthetic. Features a kangaroo pocket, ribbed cuffs, and a subtle VELOUR emblem on the chest. 380gsm French terry fabric.",
+    "images": [
+      "images/prod_001_hoodie.png"
+    ],
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "colors": [
+      "Midnight Black",
+      "Charcoal",
+      "Ash Grey"
+    ],
+    "stock": 47,
+    "rating": 4.8,
+    "review_count": 312,
+    "tags": [
+      "hoodie",
+      "oversized",
+      "streetwear",
+      "bestseller"
+    ],
+    "is_new": false,
+    "is_featured": true
+  },
+  {
+    "id": "prod-002",
+    "name": "Aura Essential Tee",
+    "brand": "VELOUR",
+    "category": "men",
+    "subcategory": "t-shirts",
+    "price": 39.99,
+    "original_price": null,
+    "discount_pct": null,
+    "description": "Ultra-soft 100% Pima cotton essential tee with a relaxed fit. The perfect canvas for everyday wear. Pre-washed for a lived-in feel from day one.",
+    "images": [
+      "images/prod_002_tee.png"
+    ],
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "colors": [
+      "Cream White",
+      "Midnight Black",
+      "Dusty Rose"
+    ],
+    "stock": 120,
+    "rating": 4.6,
+    "review_count": 489,
+    "tags": [
+      "t-shirt",
+      "essential",
+      "basic",
+      "cotton"
+    ],
+    "is_new": false,
+    "is_featured": true
+  },
+  {
+    "id": "prod-003",
+    "name": "Void Bomber Jacket",
+    "brand": "VELOUR",
+    "category": "men",
+    "subcategory": "jackets",
+    "price": 149.99,
+    "original_price": 199.99,
+    "discount_pct": 25,
+    "description": "A modern take on the classic bomber. Satin exterior, ribbed collar, cuffs and hem. Two front pockets and an interior zip pocket. The ultimate layering piece.",
+    "images": [
+      "images/prod_003_jacket.png"
+    ],
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "colors": [
+      "Navy Void",
+      "Midnight Black",
+      "Olive"
+    ],
+    "stock": 23,
+    "rating": 4.9,
+    "review_count": 157,
+    "tags": [
+      "jacket",
+      "bomber",
+      "outerwear",
+      "premium"
+    ],
+    "is_new": true,
+    "is_featured": true
+  },
+  {
+    "id": "prod-004",
+    "name": "Utility Cargo Pants",
+    "brand": "VELOUR",
+    "category": "men",
+    "subcategory": "pants",
+    "price": 99.99,
+    "original_price": null,
+    "discount_pct": null,
+    "description": "Technical cargo pants with 6 utility pockets. Tapered fit from knee down. Durable cotton-twill construction with water-resistant coating.",
+    "images": [
+      "images/prod_004_pants.png"
+    ],
+    "sizes": [
+      "28",
+      "30",
+      "32",
+      "34",
+      "36",
+      "38"
+    ],
+    "colors": [
+      "Jet Black",
+      "Khaki",
+      "Slate Grey"
+    ],
+    "stock": 55,
+    "rating": 4.7,
+    "review_count": 203,
+    "tags": [
+      "cargo",
+      "pants",
+      "utility",
+      "streetwear"
+    ],
+    "is_new": true,
+    "is_featured": false
+  },
+  {
+    "id": "prod-006",
+    "name": "Eclipse Crewneck",
+    "brand": "VELOUR",
+    "category": "women",
+    "subcategory": "sweatshirts",
+    "price": 74.99,
+    "original_price": 94.99,
+    "discount_pct": 21,
+    "description": "Relaxed-fit crewneck sweatshirt in 100% organic brushed cotton. A minimal VELOUR emblem on the left chest. Garment-dyed for a rich, deep color.",
+    "images": [
+      "images/prod_006_sweatshirt.png"
+    ],
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "colors": [
+      "Forest Green",
+      "Burgundy",
+      "Charcoal"
+    ],
+    "stock": 38,
+    "rating": 4.7,
+    "review_count": 142,
+    "tags": [
+      "crewneck",
+      "sweatshirt",
+      "women",
+      "organic"
+    ],
+    "is_new": false,
+    "is_featured": true
+  },
+  {
+    "id": "prod-007",
+    "name": "Phantom Wide-Leg Trousers",
+    "brand": "VELOUR",
+    "category": "women",
+    "subcategory": "pants",
+    "price": 84.99,
+    "original_price": null,
+    "discount_pct": null,
+    "description": "Relaxed wide-leg trousers in a luxurious woven fabric. High waist with a flat front and side pockets. Effortlessly chic and comfortable.",
+    "images": [
+      "images/prod_007_trousers.png"
+    ],
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "colors": [
+      "Cream",
+      "Black",
+      "Camel"
+    ],
+    "stock": 41,
+    "rating": 4.8,
+    "review_count": 89,
+    "tags": [
+      "trousers",
+      "wide-leg",
+      "women",
+      "chic"
+    ],
+    "is_new": true,
+    "is_featured": false
+  },
+  {
+    "id": "prod-008",
+    "name": "Drift Zip-Up Hoodie",
+    "brand": "VELOUR",
+    "category": "men",
+    "subcategory": "hoodies",
+    "price": 94.99,
+    "original_price": null,
+    "discount_pct": null,
+    "description": "Full-zip heavyweight hoodie with dual front pockets. Made from 360gsm fleece-back jersey. A streetwear staple reimagined.",
+    "images": [
+      "images/prod_008_zipup.png"
+    ],
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "colors": [
+      "Smoke Grey",
+      "Midnight Black"
+    ],
+    "stock": 60,
+    "rating": 4.6,
+    "review_count": 178,
+    "tags": [
+      "zip-up",
+      "hoodie",
+      "men",
+      "streetwear"
+    ],
+    "is_new": true,
+    "is_featured": false
+  },
+  {
+    "id": "prod-009",
+    "name": "Minimal Logo Longsleeve",
+    "brand": "VELOUR",
+    "category": "women",
+    "subcategory": "tops",
+    "price": 49.99,
+    "original_price": 64.99,
+    "discount_pct": 23,
+    "description": "Fitted long-sleeve top in ultra-soft Supima cotton. Ribbed cuffs and neckline. Small VELOUR wordmark on left chest. A wardrobe essential.",
+    "images": [
+      "images/prod_009_longsleeve.png"
+    ],
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "colors": [
+      "Bone White",
+      "Black",
+      "Dusty Blue"
+    ],
+    "stock": 95,
+    "rating": 4.5,
+    "review_count": 231,
+    "tags": [
+      "longsleeve",
+      "top",
+      "women",
+      "minimal"
+    ],
+    "is_new": false,
+    "is_featured": false
+  },
+  {
+    "id": "prod-010",
+    "name": "Noir Graphic Tee",
+    "brand": "VELOUR",
+    "category": "men",
+    "subcategory": "t-shirts",
+    "price": 44.99,
+    "original_price": null,
+    "discount_pct": null,
+    "description": "Oversized graphic t-shirt with a screen-printed distressed VELOUR motif on the back. 240gsm heavyweight cotton. Boxy fit.",
+    "images": [
+      "images/prod_010_tee.png"
+    ],
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "colors": [
+      "Washed Black",
+      "Vintage White"
+    ],
+    "stock": 70,
+    "rating": 4.4,
+    "review_count": 106,
+    "tags": [
+      "graphic",
+      "t-shirt",
+      "oversized",
+      "printed"
+    ],
+    "is_new": true,
+    "is_featured": false
+  },
+  {
+    "id": "prod-012",
+    "name": "Haze Tech Fleece Jogger",
+    "brand": "VELOUR",
+    "category": "men",
+    "subcategory": "pants",
+    "price": 79.99,
+    "original_price": 99.99,
+    "discount_pct": 20,
+    "description": "Technical fleece jogger with tapered fit, ribbed ankle cuffs, and two zip side pockets. Drawstring waistband. Perfect for running or lounging.",
+    "images": [
+      "images/prod_012_pants.png"
+    ],
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "colors": [
+      "Charcoal",
+      "Black",
+      "Light Grey"
+    ],
+    "stock": 50,
+    "rating": 4.6,
+    "review_count": 184,
+    "tags": [
+      "jogger",
+      "fleece",
+      "men",
+      "athletic",
+      "sale"
+    ],
+    "is_new": false,
+    "is_featured": false
+  },
+  {
+    "id": "prod-013",
+    "name": "Reverie Oversized Blazer",
+    "brand": "VELOUR",
+    "category": "women",
+    "subcategory": "jackets",
+    "price": 159.99,
+    "original_price": null,
+    "discount_pct": null,
+    "description": "Deconstructed oversized blazer in a premium wool blend. Notch lapel, single button closure, and two flap pockets. Unlined for a relaxed drape.",
+    "images": [
+      "images/prod_013_blazer.png"
+    ],
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "colors": [
+      "Camel",
+      "Charcoal",
+      "Ivory"
+    ],
+    "stock": 18,
+    "rating": 4.9,
+    "review_count": 63,
+    "tags": [
+      "blazer",
+      "oversized",
+      "women",
+      "premium",
+      "new"
+    ],
+    "is_new": true,
+    "is_featured": true
+  },
+  {
+    "id": "prod-015",
+    "name": "Core Ribbed Tank Top",
+    "brand": "VELOUR",
+    "category": "women",
+    "subcategory": "tops",
+    "price": 29.99,
+    "original_price": 39.99,
+    "discount_pct": 25,
+    "description": "Form-fitting ribbed tank top in 95% Pima cotton/5% elastane. Racerback strap. A versatile layering piece or standalone summer essential.",
+    "images": [
+      "images/prod_015_tank.png"
+    ],
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "colors": [
+      "Bone",
+      "Black",
+      "Terracotta",
+      "Sage"
+    ],
+    "stock": 110,
+    "rating": 4.5,
+    "review_count": 267,
+    "tags": [
+      "tank top",
+      "ribbed",
+      "women",
+      "sale"
+    ],
+    "is_new": false,
+    "is_featured": false
+  },
+  {
+    "id": "prod-016",
+    "name": "Storm Puffer Jacket",
+    "brand": "VELOUR",
+    "category": "men",
+    "subcategory": "jackets",
+    "price": 189.99,
+    "original_price": null,
+    "discount_pct": null,
+    "description": "Lightweight 700-fill goose down puffer jacket with a water-resistant shell. Packable into its own chest pocket. Matte finish.",
+    "images": [
+      "images/prod_016_puffer.png"
+    ],
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "colors": [
+      "Onyx",
+      "Forest Green",
+      "Burgundy"
+    ],
+    "stock": 25,
+    "rating": 4.8,
+    "review_count": 119,
+    "tags": [
+      "puffer",
+      "jacket",
+      "winter",
+      "men",
+      "premium"
+    ],
+    "is_new": true,
+    "is_featured": true
+  },
+  {
+    "id": "prod-017",
+    "name": "Mirage Denim Jacket",
+    "brand": "VELOUR",
+    "category": "women",
+    "subcategory": "jackets",
+    "price": 124.99,
+    "original_price": 149.99,
+    "discount_pct": 17,
+    "description": "Vintage-washed denim jacket with a relaxed fit. Chest pockets, side seam pockets, and button front closure. Medium indigo wash.",
+    "images": [
+      "images/prod_017_denim.png"
+    ],
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "colors": [
+      "Mid Indigo",
+      "Black Wash"
+    ],
+    "stock": 33,
+    "rating": 4.6,
+    "review_count": 95,
+    "tags": [
+      "denim",
+      "jacket",
+      "women",
+      "vintage"
+    ],
+    "is_new": false,
+    "is_featured": false
+  },
+  {
+    "id": "prod-019",
+    "name": "Flux Sherpa Pullover",
+    "brand": "VELOUR",
+    "category": "men",
+    "subcategory": "sweatshirts",
+    "price": 104.99,
+    "original_price": 129.99,
+    "discount_pct": 19,
+    "description": "Half-zip pullover with a sherpa fleece body and smooth jersey sleeves and collar. Kangaroo pocket. The ultimate cozy essential.",
+    "images": [
+      "images/prod_019_pullover.png"
+    ],
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "colors": [
+      "Caramel",
+      "Cream",
+      "Grey"
+    ],
+    "stock": 42,
+    "rating": 4.7,
+    "review_count": 136,
+    "tags": [
+      "sherpa",
+      "pullover",
+      "men",
+      "cozy",
+      "sale"
+    ],
+    "is_new": false,
+    "is_featured": false
+  },
+  {
+    "id": "prod-020",
+    "name": "Apex Running Shorts",
+    "brand": "VELOUR",
+    "category": "men",
+    "subcategory": "shorts",
+    "price": 44.99,
+    "original_price": null,
+    "discount_pct": null,
+    "description": "Lightweight 5-inch running shorts with a built-in liner and zip back pocket. Quick-dry fabric. A performance essential.",
+    "images": [
+      "images/prod_020_shorts.png"
+    ],
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "colors": [
+      "Black",
+      "Navy",
+      "White"
+    ],
+    "stock": 88,
+    "rating": 4.5,
+    "review_count": 73,
+    "tags": [
+      "shorts",
+      "running",
+      "men",
+      "athletic"
+    ],
+    "is_new": false,
+    "is_featured": false
+  }
+]
