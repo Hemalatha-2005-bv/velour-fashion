@@ -69,8 +69,36 @@
 .feature-item { display: flex; align-items: center; gap: 0.75rem; color: var(--text-secondary); margin-bottom: 0.75rem; font-size: 0.9rem; }
 .feature-item svg { color: var(--text-primary); width: 1.2rem; height: 1.2rem; }
 
+.product-buy-row {
+  display: flex;
+  gap: 1rem;
+}
+
 @media (max-width: 900px) {
   .product-layout { grid-template-columns: 1fr; gap: 2rem; }
   .product-details { position: static; }
   .p-title { font-size: 2rem; }
+}
+
+@media (max-width: 480px) {
+  .gallery-thumbs {
+    gap: 0.5rem;
+    overflow-x: auto;
+    padding-bottom: 0.25rem;
+  }
+  .thumb {
+    width: 60px;
+    height: 75px;
+    flex-shrink: 0;
+  }
+  .product-buy-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .qty-control {
+    justify-content: center;
+  }
+  .p-title {
+    font-size: 1.75rem;
+  }
 }

@@ -240,23 +240,68 @@ async function toggleWishlist(productId, btn) {
   } catch(e) { Toast.error(e.message); }
 }
 
+function closeMobileMenu() {
+  document.getElementById('mobile-nav')?.classList.remove('open');
+}
+
 // ── Render header auth state ──────────────────────────────────────
 function renderHeaderAuth() {
   const authBtns = document.getElementById('header-auth');
-  if (!authBtns) return;
+  const mobileNav = document.getElementById('mobile-nav');
+  
   if (Auth.isLoggedIn()) {
-    const u = Auth.getUser();
-    authBtns.innerHTML = `
-      <a href="wishlist.html" class="icon-btn hide-mobile" title="Wishlist">
-        <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
-      </a>
-      <a href="account.html" class="icon-btn hide-mobile" title="Account">
-        <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
-      </a>`;
+    if (authBtns) {
+      authBtns.innerHTML = `
+        <a href="wishlist.html" class="icon-btn hide-mobile" title="Wishlist">
+          <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+        </a>
+        <a href="account.html" class="icon-btn hide-mobile" title="Account">
+          <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
+        </a>`;
+    }
+    if (mobileNav) {
+      mobileNav.querySelectorAll('.mobile-auth-link').forEach(e => e.remove());
+      
+      const wishlistLink = document.createElement('a');
+      wishlistLink.href = 'wishlist.html';
+      wishlistLink.className = 'nav-link mobile-auth-link';
+      wishlistLink.textContent = 'Wishlist';
+      
+      const accountLink = document.createElement('a');
+      accountLink.href = 'account.html';
+      accountLink.className = 'nav-link mobile-auth-link';
+      accountLink.textContent = 'Account';
+      
+      const logoutLink = document.createElement('a');
+      logoutLink.href = '#';
+      logoutLink.className = 'nav-link mobile-auth-link text-rose';
+      logoutLink.textContent = 'Sign Out';
+      logoutLink.style.color = 'var(--accent-rose, #ef4444)';
+      logoutLink.addEventListener('click', (e) => {
+        e.preventDefault();
+        Auth.logout();
+        closeMobileMenu();
+      });
+      
+      mobileNav.appendChild(wishlistLink);
+      mobileNav.appendChild(accountLink);
+      mobileNav.appendChild(logoutLink);
+    }
   } else {
-    authBtns.innerHTML = `<a href="auth.html" class="btn btn-secondary btn-sm">Sign In</a>`;
+    if (authBtns) {
+      authBtns.innerHTML = `<a href="auth.html" class="btn btn-secondary btn-sm">Sign In</a>`;
+    }
+    if (mobileNav) {
+      mobileNav.querySelectorAll('.mobile-auth-link').forEach(e => e.remove());
+      const signInLink = document.createElement('a');
+      signInLink.href = 'auth.html';
+      signInLink.className = 'nav-link mobile-auth-link';
+      signInLink.textContent = 'Sign In';
+      mobileNav.appendChild(signInLink);
+    }
   }
 }
+
 
 // ── Init ──────────────────────────────────────────────────────────
 document.addEventListener('DOMContentLoaded', () => {

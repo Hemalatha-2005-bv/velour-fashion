@@ -5,5 +5,12 @@
     "email": "hemalathahemalatha0578@gmail.com",
     "hashed_password": "$2b$12$3eX6ndwonIC1L6f7d9Vcq.Xa8haZefjKRoeGgw/SfQVSeiQtzZ1Uu",
     "created_at": "2026-08-11T05:00:14.514607"
+  },
+  {
+    "id": "admin-demo-user-id",
+    "name": "Admin Tester",
+    "email": "admin@velour.com",
+    "hashed_password": "$2b$12$MciqJx4CrgvbBFsQ3HRrtuQlhS4dyO.Bx3gVm6LLFtdEU/xxxjK4C",
+    "created_at": "2026-08-12T05:00:00.000000"
   }
 ]

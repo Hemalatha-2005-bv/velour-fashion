@@ -64,3 +64,13 @@ body { background: var(--bg-primary); }
 .pwd-weak .pwd-bar:nth-child(1) { background: var(--accent-rose); }
 .pwd-fair .pwd-bar:nth-child(1), .pwd-fair .pwd-bar:nth-child(2) { background: var(--accent-amber); }
 .pwd-strong .pwd-bar { background: var(--text-primary); }
+
+@media (max-width: 480px) {
+  .auth-card {
+    padding: 2rem 1.5rem;
+  }
+  .auth-logo {
+    font-size: 1.75rem;
+    margin-bottom: 2rem;
+  }
+}

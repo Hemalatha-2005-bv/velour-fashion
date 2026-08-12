@@ -49,3 +49,28 @@
   .cart-page-layout { grid-template-columns: 1fr; }
   .summary-box { position: static; }
 }
+
+@media (max-width: 500px) {
+  .cart-item-row {
+    gap: 1rem;
+  }
+  .cart-item-row img {
+    width: 80px;
+    height: 100px;
+  }
+  .cart-item-title {
+    font-size: 0.95rem;
+  }
+  .cart-item-actions {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+    width: 100%;
+  }
+  .cart-item-actions > div {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+}

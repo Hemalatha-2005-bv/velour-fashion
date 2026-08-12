@@ -184,6 +184,17 @@
 .toast.removing{animation:toast-out .3s var(--transition-base) forwards;}
 .toast-icon{width:1rem;height:1rem;flex-shrink:0;}
 .toast-msg{font-size:.85rem;color:var(--text-primary);}
+
+@media(max-width:480px){
+  #toast-container{
+    left:1rem;right:1rem;bottom:1rem;
+    align-items:center;
+  }
+  .toast{
+    min-width:0;width:100%;
+  }
+}
+
 @keyframes toast-in{from{opacity:0;transform:translateY(1rem);}to{opacity:1;transform:translateY(0);}}
 @keyframes toast-out{from{opacity:1;transform:translateY(0);}to{opacity:0;transform:translateY(1rem);}}
 

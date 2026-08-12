@@ -279,8 +279,17 @@
       document.getElementById('sort-select')?.addEventListener('change', applyFilters);
       document.getElementById('apply-filters-btn')?.addEventListener('click', applyFilters);
       document.getElementById('reset-filters-btn')?.addEventListener('click', resetFilters);
-      document.getElementById('open-sidebar-btn')?.addEventListener('click', () => document.getElementById('sidebar').classList.add('open'));
-      document.getElementById('close-sidebar-btn')?.addEventListener('click', () => document.getElementById('sidebar').classList.remove('open'));
+      document.getElementById('open-sidebar-btn')?.addEventListener('click', () => {
+        document.getElementById('sidebar').classList.add('open');
+        document.getElementById('drawer-overlay')?.classList.add('open');
+      });
+      document.getElementById('close-sidebar-btn')?.addEventListener('click', () => {
+        document.getElementById('sidebar').classList.remove('open');
+        document.getElementById('drawer-overlay')?.classList.remove('open');
+      });
+      document.getElementById('drawer-overlay')?.addEventListener('click', () => {
+        document.getElementById('sidebar').classList.remove('open');
+      });
 
       loadProducts();
     });

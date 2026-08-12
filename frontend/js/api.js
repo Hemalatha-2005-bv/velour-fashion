@@ -3,7 +3,9 @@
  * All backend calls go through this module.
  */
 
-const API_BASE = '';  // Relative URL — works on localhost and any production host
+const API_BASE = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+  ? 'http://localhost:8000'
+  : (window.location.hostname.includes('onrender.com') ? '' : 'https://velour-fashion.onrender.com');
 
 function getToken() {
   return localStorage.getItem('velour_token');

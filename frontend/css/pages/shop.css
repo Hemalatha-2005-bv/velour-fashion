@@ -31,7 +31,6 @@
     display: inline-flex;
   }
   .sidebar {
-    display: none;
     position: fixed;
     top: 0; left: 0; bottom: 0;
     width: 300px;
@@ -39,9 +38,11 @@
     z-index: 1000;
     padding: 2rem;
     overflow-y: auto;
+    transform: translateX(-100%);
+    transition: transform var(--transition-slow);
   }
   .sidebar.open {
-    display: block;
+    transform: translateX(0);
   }
   .sidebar-close {
     display: block;
