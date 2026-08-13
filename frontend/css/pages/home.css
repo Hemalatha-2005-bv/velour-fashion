@@ -145,11 +145,12 @@
   font-family: var(--font-display);
   font-weight: 700;
   margin-bottom: 0.5rem;
+  color: #FFFFFF;
 }
 .category-link {
   font-size: 0.85rem;
   font-weight: 600;
-  color: var(--text-primary);
+  color: #FFFFFF;
   display: flex;
   align-items: center;
   gap: 0.5rem;

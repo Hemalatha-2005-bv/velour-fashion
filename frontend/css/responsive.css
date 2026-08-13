@@ -244,7 +244,8 @@ video {
     max-width: 380px !important;
     margin: 0 auto !important;
   }
-  .category-title { font-size: 1.25rem !important; }
+  .category-title { font-size: 1.25rem !important; color: #FFFFFF !important; }
+  .category-link { color: #FFFFFF !important; }
 
   /* Story section centering */
   .story-img {
