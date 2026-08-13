@@ -129,11 +129,14 @@ video {
   .header__logo { font-size: 1.2rem !important; }
   .hide-mobile { display: none !important; }
 
-  /* Typography */
+  /* Typography & Marquee */
   .section-title { font-size: 1.75rem !important; }
   .section-header { margin-bottom: 1.5rem !important; }
   .page-hero { padding: 6.5rem 0 2.5rem !important; }
   .page-hero__title { font-size: 2rem !important; }
+  .marquee-section { padding: 0.65rem 0 !important; max-width: 100% !important; overflow: hidden !important; }
+  .marquee-content { font-size: 0.75rem !important; gap: 1.75rem !important; }
+  .marquee-content span { gap: 1.75rem !important; }
 
   /* Tablet Product grid: 2 columns */
   .products-grid {
