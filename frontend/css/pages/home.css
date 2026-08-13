@@ -22,9 +22,11 @@
 .hero-content {
   position: relative;
   z-index: 2;
+  width: 100%;
   max-width: 800px;
-  padding: 0 2rem;
+  padding: 0 1.5rem;
   color: #FFFFFF;
+  box-sizing: border-box;
 }
 .hero-eyebrow {
   font-size: 0.85rem;
@@ -52,6 +54,7 @@
 }
 .hero-actions {
   display: flex;
+  flex-wrap: wrap;
   gap: 1rem;
   justify-content: center;
   animation: fadeInUp 1s ease 0.6s both;
@@ -67,6 +70,8 @@
   overflow: hidden;
   white-space: nowrap;
   display: flex;
+  width: 100%;
+  max-width: 100vw;
 }
 .marquee-content {
   display: flex;
@@ -152,6 +157,40 @@
 @media (max-width: 900px) {
   .category-cards { grid-template-columns: 1fr; }
   .category-card { aspect-ratio: 16/9; }
+}
+
+@media (max-width: 768px) {
+  .hero-content {
+    max-width: 100%;
+    padding: 0 1rem;
+  }
+  .hero-actions {
+    flex-direction: column;
+    align-items: center;
+    padding: 0 1rem;
+  }
+  .hero-actions .btn,
+  .hero-actions a,
+  .hero-actions button {
+    width: 100%;
+    max-width: 300px;
+  }
+  .category-card-content {
+    bottom: 1rem;
+    left: 1rem;
+  }
+  .category-title { font-size: 1.5rem; }
+  .newsletter-banner { padding: 2.5rem 1.25rem; }
+  .newsletter-banner h2 { font-size: 1.5rem; }
+}
+
+@media (max-width: 480px) {
+  .hero-title { font-size: clamp(1.6rem, 8vw, 2.5rem); }
+  .hero-sub { font-size: 0.85rem; }
+  .hero-section { height: 90vh; min-height: 420px; }
+  .category-card { aspect-ratio: 4/3; }
+  .category-title { font-size: 1.25rem; }
+  .newsletter-banner { padding: 2rem 1rem; border-radius: 0; }
 }
 
 /* Brand Story */

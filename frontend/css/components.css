@@ -82,7 +82,7 @@
 .product-card:hover .product-card__actions{opacity:1;}
 
 .product-card__body{padding:1rem 0;}
-.product-card__name{font-weight:500;font-size:.9rem;margin-bottom:.2rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.product-card__name{font-weight:500;font-size:.9rem;margin-bottom:.2rem;overflow:hidden;text-overflow:ellipsis;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;}
 .product-card__cat{font-size:.7rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:.04em;margin-bottom:.5rem;display:none;}
 .product-card__pricing{display:flex;align-items:center;gap:.6rem;}
 .product-card__price{font-weight:600;font-size:.9rem;}
