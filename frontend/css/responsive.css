@@ -1,62 +1,94 @@
 /* ═══════════════════════════════════════════════════════════════════
-   VELOUR — RESPONSIVE.CSS  (Ground-up fix, Aug 2026)
-   Fixes all mobile alignment, overflow, and layout issues.
-   Applied LAST so these rules win over all other stylesheets.
+   VELOUR — COMPREHENSIVE RESPONSIVE CSS
+   Mobile-first responsive overrides for all pages and components.
+   Ensures zero horizontal overflow and strict section boundary limits.
+   Breakpoints:
+     ≤1024px  → laptop
+     ≤900px   → small laptop / large tablet
+     ≤768px   → tablet
+     ≤600px   → mobile (enforces 1 card/row, tested at 425px, 375px, 320px)
+     ≤380px   → very small mobile (Galaxy Fold / iPhone SE)
 ═══════════════════════════════════════════════════════════════════ */
 
-/* ── 1. Nuclear overflow prevention ─────────────────────────────── */
-html { overflow-x: hidden; width: 100%; }
-body { overflow-x: hidden; width: 100%; position: relative; }
-
-/* All elements must stay within viewport width */
-main, section, footer, header, nav, aside, div {
-  max-width: 100%;
-}
-
-/* Images never overflow */
-img { max-width: 100%; height: auto; display: block; }
-
-/* ── 2. Container — consistent side padding on all devices ──────── */
-.container {
-  width: 100%;
-  max-width: 1280px;
-  margin-left: auto;
-  margin-right: auto;
-  padding-left: 1.5rem;
-  padding-right: 1.5rem;
+/* ── 1. Global Viewport Constraints & Overflow Prevention ─────── */
+html,
+body {
+  overflow-x: hidden !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
   box-sizing: border-box;
 }
 
+/* Force child elements to respect parent width bounds */
+* {
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+main,
+section,
+footer,
+header,
+nav,
+aside,
+div {
+  max-width: 100% !important;
+  overflow-x: hidden;
+}
+
+/* Responsive media assets */
+img,
+video {
+  max-width: 100% !important;
+  height: auto !important;
+  display: block;
+}
+
+/* Global container constraints */
+.container {
+  width: 100% !important;
+  max-width: 1280px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  padding-left: 1.5rem !important;
+  padding-right: 1.5rem !important;
+}
+
 /* ═══════════════════════════════════════════════════════════════════
-   TABLET (≤ 900px)
+   LAPTOP  (≤ 1024px)
+═══════════════════════════════════════════════════════════════════ */
+@media screen and (max-width: 1024px) {
+  .header__inner { padding: 0 1.5rem; }
+  .container { padding-left: 1.25rem !important; padding-right: 1.25rem !important; }
+  .products-grid { grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); }
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   SMALL LAPTOP / LARGE TABLET  (≤ 900px)
 ═══════════════════════════════════════════════════════════════════ */
 @media screen and (max-width: 900px) {
-
-  /* Container */
-  .container { padding-left: 1rem; padding-right: 1rem; }
-  .section { padding: 4rem 0; }
-
-  /* Header */
+  /* Navigation & Top Bar */
   .header__nav { display: none !important; }
   .mobile-menu-btn { display: flex !important; }
   .header__inner { padding: 0 1rem !important; height: 3.5rem !important; }
-  .header__actions .hide-mobile { display: none !important; }
 
-  /* Footer: 2 columns */
-  .footer { padding: 3.5rem 0 1.5rem; }
-  .footer__grid {
-    grid-template-columns: 1fr 1fr !important;
-    gap: 2rem !important;
-  }
+  /* Sections padding */
+  .section { padding: 4rem 0; }
 
-  /* Product grid: always 2 columns */
-  .products-grid {
-    grid-template-columns: repeat(2, 1fr) !important;
-    gap: 1.25rem 1rem !important;
-  }
+  /* Page layout column stacking */
+  .shop-layout { grid-template-columns: 1fr !important; gap: 1.5rem; }
+  .product-layout { grid-template-columns: 1fr !important; gap: 2rem; }
+  .cart-page-layout { grid-template-columns: 1fr !important; gap: 2rem; }
+  .checkout-layout { grid-template-columns: 1fr !important; gap: 2rem; }
 
-  /* Shop: sidebar becomes full-screen slide-in */
-  .shop-layout { grid-template-columns: 1fr !important; }
+  /* Element positioning */
+  .product-details { position: static !important; }
+  .summary-box { position: static !important; }
+  .checkout-summary { position: static !important; order: -1; margin-bottom: 1rem; }
+
+  /* Shop filter sidebar drawer */
   .sidebar {
     position: fixed !important;
     top: 0; left: 0; bottom: 0;
@@ -73,71 +105,43 @@ img { max-width: 100%; height: auto; display: block; }
   .sidebar.open { transform: translateX(0) !important; }
   .mobile-filter-btn { display: inline-flex !important; }
 
-  /* Product page: stack columns */
-  .product-layout { grid-template-columns: 1fr !important; gap: 2rem; }
-  .product-details { position: static !important; }
-
-  /* Cart page: stack columns */
-  .cart-page-layout { grid-template-columns: 1fr !important; }
-  .summary-box { position: static !important; }
-
-  /* Checkout: stack columns */
-  .checkout-layout { grid-template-columns: 1fr !important; }
-
-  /* Story section: stack */
+  /* Story and Categories */
   .story-section { grid-template-columns: 1fr !important; gap: 2rem; }
   .story-img { aspect-ratio: 16/9 !important; width: 100%; }
-
-  /* Category cards: single column, landscape */
   .category-cards { grid-template-columns: 1fr !important; gap: 1rem; }
   .category-card { aspect-ratio: 16/9 !important; }
+
+  /* Footer: 2 columns */
+  .footer { padding: 3.5rem 0 1.5rem; }
+  .footer__grid { grid-template-columns: 1fr 1fr !important; gap: 2rem !important; }
 }
 
 /* ═══════════════════════════════════════════════════════════════════
-   MOBILE (≤ 768px)
+   TABLET  (≤ 768px)
 ═══════════════════════════════════════════════════════════════════ */
 @media screen and (max-width: 768px) {
+  /* Container spacing */
+  .container { padding-left: 1rem !important; padding-right: 1rem !important; }
+  .section { padding: 3.5rem 0; }
 
-  /* Container tighter */
-  .container { padding-left: 0.875rem; padding-right: 0.875rem; }
-  .section { padding: 3rem 0; }
-
-  /* Header height */
-  .header__inner { height: 3.25rem !important; padding: 0 0.875rem !important; }
+  /* Header adjustments */
+  .header__inner { height: 3.25rem !important; padding: 0 1rem !important; }
   .header__logo { font-size: 1.2rem !important; }
+  .hide-mobile { display: none !important; }
 
-  /* Section titles */
-  .section-title { font-size: clamp(1.25rem, 5.5vw, 1.75rem) !important; }
+  /* Typography */
+  .section-title { font-size: 1.75rem !important; }
   .section-header { margin-bottom: 1.5rem !important; }
-
-  /* Page hero (shop, cart, etc.) */
   .page-hero { padding: 6.5rem 0 2.5rem !important; }
-  .page-hero__title { font-size: clamp(1.5rem, 7vw, 2.25rem) !important; }
-  .page-hero__sub { font-size: 0.85rem !important; max-width: 100%; }
+  .page-hero__title { font-size: 2rem !important; }
 
-  /* Product grid */
+  /* Tablet Product grid: 2 columns */
   .products-grid {
     grid-template-columns: repeat(2, 1fr) !important;
-    gap: 1rem 0.75rem !important;
-  }
-  .product-card__body { padding: 0.5rem 0 !important; }
-  .product-card__name { font-size: 0.8rem !important; }
-  .product-card__price { font-size: 0.82rem !important; }
-  .product-card__original { font-size: 0.72rem !important; }
-  .product-card__add {
-    font-size: 0.65rem !important;
-    padding: 0.45rem 0.4rem !important;
-    letter-spacing: 0.02em !important;
+    gap: 1.25rem 1rem !important;
   }
 
-  /* Badges smaller */
-  .badge { font-size: 0.55rem !important; padding: 0.1rem 0.35rem !important; }
-
-  /* Stars */
-  .stars svg { width: 10px !important; height: 10px !important; }
-  .rating-count { font-size: 0.6rem !important; }
-
-  /* Product detail page */
+  /* Product details */
   .gallery-thumbs {
     overflow-x: auto !important;
     -webkit-overflow-scrolling: touch;
@@ -145,42 +149,122 @@ img { max-width: 100%; height: auto; display: block; }
     padding-bottom: 0.25rem;
     gap: 0.5rem !important;
   }
-  .thumb {
-    width: 64px !important;
-    height: 80px !important;
-    flex-shrink: 0 !important;
-  }
+  .thumb { width: 64px !important; height: 80px !important; flex-shrink: 0 !important; }
   .p-title { font-size: 1.6rem !important; }
-  .p-price { font-size: 1.25rem !important; }
   .product-buy-row { flex-direction: column !important; gap: 0.75rem !important; }
   .product-buy-row .btn { width: 100% !important; }
 
-  /* Cart page */
+  /* Cart & Checkout */
   .cart-item-row { gap: 1rem !important; }
   .cart-item-row img { width: 80px !important; height: 100px !important; }
-  .cart-item-title { font-size: 0.95rem !important; }
-  .cart-item-actions {
+  .cart-item-actions { flex-direction: column !important; align-items: flex-start !important; gap: 0.5rem !important; }
+  .cart-drawer { width: 100vw !important; }
+  .form-row { grid-template-columns: 1fr !important; }
+
+  /* Buttons */
+  .btn { font-size: 0.78rem !important; padding: 0.7rem 1.2rem !important; }
+  .btn-lg { font-size: 0.82rem !important; padding: 0.8rem 1.5rem !important; }
+  .btn-sm { font-size: 0.68rem !important; padding: 0.5rem 0.875rem !important; }
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   MOBILE  (≤ 600px) — Target widths: 425px, 375px, 320px
+   Enforces one card per row, centers content, prevents text overlap.
+═══════════════════════════════════════════════════════════════════ */
+@media screen and (max-width: 600px) {
+  /* Tighter Container Padding to prevent clipping on 320px */
+  .container { padding-left: 0.75rem !important; padding-right: 0.75rem !important; }
+  .section { padding: 2.5rem 0 !important; }
+
+  /* Main Offset for Header */
+  .main-content { padding-top: 3.25rem !important; }
+
+  /* ── Hero Section Boundary & Viewport fit ── */
+  .hero-section {
+    height: 80vh !important;
+    min-height: 380px !important;
+    padding: 3rem 1rem !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    box-sizing: border-box !important;
+  }
+  .hero-content {
+    padding: 0 !important;
+    width: 100% !important;
+  }
+  .hero-title {
+    font-size: 1.85rem !important;
+    line-height: 1.1 !important;
+    margin-bottom: 1rem !important;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+  .hero-sub {
+    font-size: 0.85rem !important;
+    line-height: 1.4 !important;
+    margin-bottom: 1.5rem !important;
+    max-width: 100% !important;
+  }
+  .hero-actions {
     flex-direction: column !important;
-    align-items: flex-start !important;
     gap: 0.5rem !important;
+    width: 100% !important;
+    align-items: center !important;
+  }
+  .hero-actions .btn {
+    width: 100% !important;
+    max-width: 260px !important;
+    margin: 0 !important;
   }
 
-  /* Cart drawer: full width on phones */
-  .cart-drawer { width: 100vw !important; }
+  /* ── Product Grid: Enforce exactly 1 card per row ── */
+  .products-grid {
+    grid-template-columns: 1fr !important;
+    gap: 2rem !important;
+    width: 100% !important;
+  }
+  .product-card {
+    max-width: 320px !important;
+    width: 100% !important;
+    margin: 0 auto !important;
+    box-sizing: border-box !important;
+  }
+  .product-card__image-wrap {
+    aspect-ratio: 4/5 !important;
+  }
+  .product-card__add {
+    font-size: 0.72rem !important;
+    padding: 0.6rem !important;
+  }
 
-  /* Auth card */
-  .auth-page { padding: 1rem !important; align-items: flex-start; padding-top: 5rem !important; }
-  .auth-card { padding: 2rem 1.25rem !important; margin: 0 !important; }
-  .auth-logo { font-size: 1.5rem !important; margin-bottom: 1.5rem !important; }
+  /* Category cards centering */
+  .category-card {
+    aspect-ratio: 16/10 !important;
+    max-width: 380px !important;
+    margin: 0 auto !important;
+  }
+  .category-title { font-size: 1.25rem !important; }
 
-  /* Newsletter banner */
-  .newsletter-banner { padding: 2.5rem 1.25rem !important; text-align: center; }
+  /* Story section centering */
+  .story-img {
+    aspect-ratio: 16/10 !important;
+    max-width: 380px !important;
+    margin: 0 auto !important;
+  }
+
+  /* Newsletter Form Stacking */
+  .newsletter-banner {
+    padding: 2rem 1rem !important;
+    max-width: 380px !important;
+    margin: 0 auto !important;
+  }
   .newsletter-banner form,
   .newsletter-form {
     flex-direction: column !important;
     gap: 0.5rem !important;
     max-width: 100% !important;
-    margin-top: 1.25rem !important;
+    margin-top: 1rem !important;
     border: none !important;
     background: transparent !important;
   }
@@ -195,159 +279,67 @@ img { max-width: 100%; height: auto; display: block; }
     box-sizing: border-box !important;
   }
 
-  /* Checkout form rows */
-  .form-row { grid-template-columns: 1fr !important; }
-
-  /* Buttons smaller */
-  .btn { font-size: 0.78rem !important; padding: 0.7rem 1.2rem !important; }
-  .btn-lg { font-size: 0.82rem !important; padding: 0.8rem 1.5rem !important; }
-  .btn-sm { font-size: 0.68rem !important; padding: 0.5rem 0.875rem !important; }
-
-  /* Promo input */
-  .promo-box { flex-direction: column !important; gap: 0.5rem !important; }
-  .promo-box input { width: 100% !important; }
+  /* Promo Box Stacking */
+  .promo-box {
+    flex-direction: column !important;
+    gap: 0.5rem !important;
+  }
+  .promo-box input,
+  .promo-box button {
+    width: 100% !important;
+  }
 
   /* Security badges stack */
-  .security-badges { flex-direction: column !important; align-items: center !important; gap: 0.75rem !important; }
-
-  /* Toast: full-width bottom */
-  #toast-container {
-    left: 0.75rem !important;
-    right: 0.75rem !important;
-    bottom: 0.75rem !important;
-    width: auto !important;
-  }
-  .toast { min-width: 0 !important; width: 100% !important; max-width: 100% !important; }
-
-  /* Modal */
-  .modal { max-width: calc(100vw - 2rem) !important; padding: 1.5rem 1.25rem !important; }
-  .modal-overlay { padding: 1rem !important; align-items: flex-end !important; }
-
-  /* Breadcrumb */
-  .breadcrumb { flex-wrap: wrap; font-size: 0.7rem !important; margin-bottom: 1rem !important; }
-
-  /* Summary */
-  .summary-box { padding: 1.25rem !important; }
-
-  /* Pagination */
-  .page-btn { width: 2rem !important; height: 2rem !important; font-size: 0.75rem !important; }
-  .pagination { padding: 1.5rem 0 !important; gap: 0.25rem !important; }
-
-  /* Tabs */
-  .tabs { overflow-x: auto; -webkit-overflow-scrolling: touch; white-space: nowrap; }
-  .tab-btn { flex-shrink: 0; font-size: 0.78rem !important; padding: 0.6rem 1rem !important; }
-
-  /* Footer */
-  .footer { padding: 2.5rem 0 1.25rem !important; }
-  .footer__grid {
-    grid-template-columns: 1fr 1fr !important;
-    gap: 1.75rem !important;
-  }
-  .footer__bottom {
+  .security-badges {
     flex-direction: column !important;
-    gap: 1rem !important;
-    text-align: center !important;
-    padding-top: 1.25rem !important;
-  }
-  .footer__brand-desc { max-width: 100% !important; }
-
-  /* Search bar full width */
-  .search-bar { max-width: 100% !important; margin-left: 0 !important; margin-right: 0 !important; }
-
-  /* Top bar wraps */
-  .top-bar { flex-wrap: wrap; gap: 0.75rem; }
-}
-
-/* ═══════════════════════════════════════════════════════════════════
-   SMALL PHONE (≤ 600px)
-═══════════════════════════════════════════════════════════════════ */
-@media screen and (max-width: 600px) {
-
-  /* Footer: single column */
-  .footer__grid { grid-template-columns: 1fr !important; gap: 1.5rem !important; }
-
-  /* Category card: slightly taller landscape */
-  .category-card { aspect-ratio: 4/3 !important; }
-  .category-title { font-size: 1.3rem !important; }
-
-  /* Main-content offset for 3.5rem header */
-  .main-content { padding-top: 3.5rem !important; }
-}
-
-/* ═══════════════════════════════════════════════════════════════════
-   SMALL PHONE (≤ 480px)
-═══════════════════════════════════════════════════════════════════ */
-@media screen and (max-width: 480px) {
-
-  .container { padding-left: 0.75rem; padding-right: 0.75rem; }
-  .section { padding: 2.5rem 0; }
-
-  /* Product grid tight */
-  .products-grid { gap: 0.75rem 0.5rem !important; }
-  .product-card__name { font-size: 0.75rem !important; }
-  .product-card__add { font-size: 0.6rem !important; padding: 0.4rem !important; }
-
-  /* Hero */
-  .hero-section { height: 90vh !important; min-height: 400px !important; }
-  .hero-title { font-size: clamp(1.5rem, 8.5vw, 2.25rem) !important; }
-  .hero-sub { font-size: 0.82rem !important; }
-  .hero-actions .btn,
-  .hero-actions a,
-  .hero-actions button {
-    max-width: 100% !important;
-    font-size: 0.78rem !important;
+    align-items: center !important;
+    gap: 0.5rem !important;
   }
 
-  /* Product detail */
-  .p-title { font-size: 1.4rem !important; }
-  .thumb { width: 54px !important; height: 67px !important; }
-  .size-btn { min-width: 2.5rem !important; padding: 0.4rem 0.6rem !important; font-size: 0.75rem !important; }
-
-  /* Cart */
-  .cart-item-row { gap: 0.75rem !important; }
-  .cart-item-row img { width: 70px !important; height: 88px !important; }
-
-  /* Auth */
-  .auth-card { padding: 1.75rem 1rem !important; }
-  .auth-logo { font-size: 1.3rem !important; margin-bottom: 1.25rem !important; }
-
-  /* Shop sidebar */
+  /* Shop sidebar drawer width adjustment */
   .sidebar { width: 90vw !important; }
 
-  /* Newsletter */
-  .newsletter-banner { padding: 2rem 0.75rem !important; }
-
-  /* Section headings */
-  .section-title { font-size: clamp(1.1rem, 5vw, 1.5rem) !important; }
-
-  /* Buttons */
-  .btn { font-size: 0.75rem !important; padding: 0.65rem 1.1rem !important; }
+  /* Footer elements stack */
+  .footer { padding: 2rem 0 1rem !important; }
+  .footer__grid { grid-template-columns: 1fr !important; gap: 1.5rem !important; }
+  .footer__bottom {
+    flex-direction: column !important;
+    gap: 0.75rem !important;
+    text-align: center !important;
+    padding-top: 1rem !important;
+  }
+  .footer__brand-desc { max-width: 100% !important; }
 }
 
 /* ═══════════════════════════════════════════════════════════════════
-   VERY SMALL (≤ 380px) — Galaxy Fold, iPhone SE, etc.
+   VERY SMALL MOBILE  (≤ 380px) — e.g. Galaxy Fold / iPhone SE (320px)
+   Enforces maximum compactness, small padding, and clean fits.
 ═══════════════════════════════════════════════════════════════════ */
 @media screen and (max-width: 380px) {
+  /* Ultra tight padding */
+  .container { padding-left: 0.5rem !important; padding-right: 0.5rem !important; }
 
-  .container { padding-left: 0.625rem; padding-right: 0.625rem; }
-
+  /* Compact Header */
+  .header__inner { padding: 0 0.5rem !important; }
   .header__logo { font-size: 1.05rem !important; }
-  .header__inner { padding: 0 0.625rem !important; }
 
-  .hero-title { font-size: 1.4rem !important; }
-  .section-title { font-size: 1rem !important; }
+  /* Small Phone Hero */
+  .hero-title { font-size: 1.45rem !important; }
+  .hero-sub { font-size: 0.78rem !important; }
+  .hero-actions .btn { max-width: 220px !important; }
 
-  .products-grid { gap: 0.5rem !important; }
-  .product-card__name { font-size: 0.7rem !important; }
-  .product-card__add { font-size: 0.55rem !important; padding: 0.35rem !important; letter-spacing: 0 !important; }
-  .badge { font-size: 0.48rem !important; }
+  /* Grid & Cards sizing fit */
+  .product-card {
+    max-width: 280px !important;
+  }
+  .product-card__name { font-size: 0.75rem !important; }
+  .product-card__add { font-size: 0.65rem !important; padding: 0.5rem !important; }
 
-  .p-title { font-size: 1.2rem !important; }
-  .auth-card { padding: 1.5rem 0.875rem !important; }
+  /* Auth Card Padding */
+  .auth-card { padding: 1.5rem 0.75rem !important; }
   .auth-logo { font-size: 1.15rem !important; }
+
+  /* Cart lists */
   .cart-item-row img { width: 60px !important; height: 75px !important; }
   .summary-box { padding: 1rem !important; }
-  .footer__grid { gap: 1.25rem !important; }
-  .newsletter-banner { padding: 1.5rem 0.625rem !important; }
-  .btn { font-size: 0.7rem !important; padding: 0.6rem 0.875rem !important; }
 }
