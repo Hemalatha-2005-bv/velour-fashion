@@ -289,7 +289,7 @@ function renderHeaderAuth() {
     }
   } else {
     if (authBtns) {
-      authBtns.innerHTML = `<a href="auth.html" class="btn btn-secondary btn-sm">Sign In</a>`;
+      authBtns.innerHTML = `<a href="auth.html" class="btn btn-secondary btn-sm hide-mobile">Sign In</a>`;
     }
     if (mobileNav) {
       mobileNav.querySelectorAll('.mobile-auth-link').forEach(e => e.remove());
