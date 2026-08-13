@@ -135,8 +135,8 @@ video {
   .page-hero { padding: 6.5rem 0 2.5rem !important; }
   .page-hero__title { font-size: 2rem !important; }
   .marquee-section { padding: 0.65rem 0 !important; max-width: 100% !important; overflow: hidden !important; }
-  .marquee-content { font-size: 0.75rem !important; gap: 1.75rem !important; }
-  .marquee-content span { gap: 1.75rem !important; }
+  .marquee-content { font-size: 0.75rem !important; gap: 1.25rem !important; padding: 0 0.75rem !important; }
+  .marquee-content span::before { margin-right: 1.25rem !important; }
 
   /* Tablet Product grid: 2 columns */
   .products-grid {

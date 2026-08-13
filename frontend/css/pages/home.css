@@ -68,31 +68,43 @@
   border-bottom: 1px solid var(--border-default);
   padding: 0.85rem 0;
   overflow: hidden;
-  white-space: nowrap;
-  display: flex;
   width: 100%;
   max-width: 100%;
   position: relative;
   user-select: none;
 }
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 20s linear infinite;
+}
 .marquee-content {
   display: flex;
   flex-shrink: 0;
   align-items: center;
-  gap: 3rem;
-  min-width: 100%;
-  animation: marquee 25s linear infinite;
+  gap: 2rem;
+  padding: 0 1rem;
   font-weight: 700;
   font-size: 0.85rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
+  white-space: nowrap;
 }
-.marquee-content span { display: inline-flex; align-items: center; gap: 3rem; }
-.marquee-content span::after { content: '·'; font-size: 1.25rem; line-height: 0; color: var(--text-muted); }
+.marquee-content span {
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
+}
+.marquee-content span::before {
+  content: '•';
+  margin-right: 2rem;
+  font-size: 1rem;
+  color: var(--text-muted);
+}
 
 @keyframes marquee {
-  0% { transform: translateX(0%); }
-  100% { transform: translateX(-100%); }
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
 }
 @keyframes fadeInUp {
   from { opacity: 0; transform: translateY(30px); }
