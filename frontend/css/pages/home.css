@@ -99,6 +99,9 @@
   display: inline-block;
   flex-shrink: 0;
   white-space: nowrap;
+  word-break: keep-all;
+  overflow-wrap: normal;
+  word-wrap: normal;
 }
 .marquee-content span::after {
   content: '•';
