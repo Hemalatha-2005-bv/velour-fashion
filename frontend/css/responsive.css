@@ -132,7 +132,8 @@ aside {
   .page-hero__title { font-size: 2rem !important; }
   .marquee-section { padding: 0.65rem 0 !important; overflow: hidden !important; }
   .marquee-content { font-size: 0.75rem !important; gap: 0 !important; padding: 0 !important; margin: 0 !important; }
-  .marquee-content span::after { margin-left: 1.25rem !important; margin-right: 1.25rem !important; }
+  .marquee-content span { flex-shrink: 0 !important; white-space: nowrap !important; }
+  .marquee-content span::after { margin: 0 1.25rem !important; }
 
   /* Tablet Product grid: 2 columns */
   .products-grid {
@@ -475,9 +476,12 @@ aside {
     padding: 0 !important;
     margin: 0 !important;
   }
+  .marquee-content span {
+    flex-shrink: 0 !important;
+    white-space: nowrap !important;
+  }
   .marquee-content span::after {
-    margin-left: 1rem !important;
-    margin-right: 1rem !important;
+    margin: 0 1rem !important;
   }
 }
 
@@ -529,9 +533,12 @@ aside {
     padding: 0 !important;
     margin: 0 !important;
   }
+  .marquee-content span {
+    flex-shrink: 0 !important;
+    white-space: nowrap !important;
+  }
   .marquee-content span::after {
-    margin-left: 0.75rem !important;
-    margin-right: 0.75rem !important;
+    margin: 0 0.75rem !important;
   }
 
   /* Newsletter */
