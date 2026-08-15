@@ -131,8 +131,8 @@ aside {
   .page-hero { padding: 6.5rem 0 2.5rem !important; }
   .page-hero__title { font-size: 2rem !important; }
   .marquee-section { padding: 0.65rem 0 !important; overflow: hidden !important; }
-  .marquee-content { font-size: 0.75rem !important; gap: 1.25rem !important; padding: 0 0.75rem !important; }
-  .marquee-content span::before { margin-right: 1.25rem !important; }
+  .marquee-content { font-size: 0.75rem !important; gap: 0 !important; padding: 0 !important; margin: 0 !important; }
+  .marquee-content span::after { margin-left: 1.25rem !important; margin-right: 1.25rem !important; }
 
   /* Tablet Product grid: 2 columns */
   .products-grid {
@@ -471,10 +471,12 @@ aside {
   }
   .marquee-content {
     font-size: 0.7rem !important;
-    gap: 1rem !important;
-    padding: 0 0.5rem !important;
+    gap: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
   }
-  .marquee-content span::before {
+  .marquee-content span::after {
+    margin-left: 1rem !important;
     margin-right: 1rem !important;
   }
 }
@@ -522,10 +524,13 @@ aside {
 
   /* Marquee even smaller */
   .marquee-content {
-    font-size: 0.6rem !important;
-    gap: 0.75rem !important;
+    font-size: 0.65rem !important;
+    gap: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
   }
-  .marquee-content span::before {
+  .marquee-content span::after {
+    margin-left: 0.75rem !important;
     margin-right: 0.75rem !important;
   }
 
